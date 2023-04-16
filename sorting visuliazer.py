@@ -2,11 +2,13 @@ from tkinter import *
 from tkinter import ttk
 import random
 from bubblesort_code import bubble_sort
+from insertion_sort import insertionSort
+from Merge_sort import merge_sort
 
 root = Tk()
 root.title('DSA PROJECT Sorting Algorithm Visualiser')
 root.geometry("750x600")
-root.config(bg='orange')
+root.config(bg='#000000')
 
 select_algorithm = StringVar()
 arr = []
@@ -50,28 +52,34 @@ def drawrectangle(arr, colorArray):
 
 def sorting():
     global arr
-    bubble_sort(arr, drawrectangle, sortingspeed.get())
-
+    algo = algomenu.get()
+    if algo=='Bubble Sort':
+        bubble_sort(arr, drawrectangle, sortingspeed.get())
+    elif algo=='Insertion Sort':
+        insertionSort(arr,drawrectangle, sortingspeed.get())
+    elif algo=='Merge Sort':
+        merge_sort(arr,0,len(arr)-1,drawrectangle, sortingspeed.get())
 
 #GUI CODING PART
 
-options_frame = Frame(root, width= 700, height=300, bg='green')
-options_frame.grid(row=0, column=0, padx=10, pady=10)
+options_frame = Frame(root, width= 750, height=300, bg='#F1F1F1')
+options_frame.grid(row=0, column=0, padx=5, pady=10)
 
-canvas = Canvas(root, width=700, height=350, bg='grey')
-canvas.grid(row=1, column=0, padx=10, pady=5)
+
+canvas = Canvas(root, width=700, height=400, bg='#0F3D3E')
+canvas.grid(row=1, column=0,padx=20,pady=10)
 
 
 Label(options_frame, text="Algorithm Choice: ",).grid(row=0, column=0, padx=10, pady=10)
 
-algomenu = ttk.Combobox(options_frame, textvariable=select_algorithm, values=['Bubble Sort'],width=10)
+algomenu = ttk.Combobox(options_frame, textvariable=select_algorithm, values=['Bubble Sort','Insertion Sort','Merge Sort'],width=10)
 algomenu.grid(row=0, column=1, padx=5, pady=5)
 algomenu.current(0)
 
 sortingspeed = Scale(options_frame, from_=0.1, to=2.0, length=100, digits=2, resolution=0.2, orient=HORIZONTAL, label="Sorting Speed ")
 sortingspeed.grid(row=0, column=2, padx=10, pady=10)
 
-Button(options_frame, text="Start Sorting", command=sorting, bg='red',height=5).grid(row=0, column=3, padx=5, pady=5)
+Button(options_frame, text="Start Sorting", command=sorting, bg='#3C486B',fg='white',height=5).grid(row=0, column=3, padx=5, pady=5)
 
 lowest_Entry = Scale(options_frame, from_=5, to=20, resolution=1, orient=HORIZONTAL, label="Lower Limit")
 lowest_Entry.grid(row=1, column=0, padx=5, pady=5)
@@ -82,6 +90,8 @@ highest_Entry.grid(row=1, column=1, padx=5, pady=5)
 arrsize_Entry = Scale(options_frame, from_=3, to=25, resolution=1, orient=HORIZONTAL, label="Array size")
 arrsize_Entry.grid(row=1, column=2, padx=5, pady=5)
 
-Button(options_frame, text="Current Array", command=Generate_array, bg='blue',height=5).grid(row=1, column=3, padx=10, pady=10)
+Button(options_frame, text="Current Array", command=Generate_array, bg='#3C2A21',fg="white",height=4).grid(row=1, column=3, padx=10, pady=10)
+
+
 
 root.mainloop()
