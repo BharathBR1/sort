@@ -3,10 +3,9 @@ from tkinter import ttk
 import random
 from bubblesort_code import bubble_sort
 from insertion_sort import insertionSort
-from Merge_sort import merge_sort
+
 from Selection_sort import selectionSort
-from quick_sort import quickSort
-from heap_sort import heapSort
+
 
 root = Tk()
 root.title('DSA PROJECT Sorting Algorithm Visualiser')
@@ -61,18 +60,11 @@ def sorting():
         bubble_sort(arr, drawrectangle, sortingspeed.get())
     elif algo == 'Insertion Sort':
         insertionSort(arr, drawrectangle, sortingspeed.get())
-    elif algo == 'Merge Sort':
-        merge_sort(arr, 0, len(arr)-1, drawrectangle, sortingspeed.get())
     elif algo == 'Selection Sort':
         selectionSort(arr, len(arr), drawrectangle, sortingspeed.get())
-    elif algo == 'Quick Sort':
-        quickSort(arr, 0, len(arr)-1, drawrectangle, sortingspeed.get())
-    elif algo == 'Heap Sort':
-        heapSort(arr, drawrectangle, sortingspeed.get())
 
 
 # GUI CODING PART
-
 
 options_frame = Frame(root, width=750, height=300, bg='#F1F1F1')
 options_frame.grid(row=0, column=0, padx=5, pady=10)
@@ -86,7 +78,7 @@ Label(options_frame, text="Algorithm Choice: ",).grid(
     row=0, column=0, padx=10, pady=10)
 
 algomenu = ttk.Combobox(options_frame, textvariable=select_algorithm, values=[
-                        'Bubble Sort', 'Insertion Sort', 'Merge Sort', 'Selection Sort', 'Quick Sort', 'Heap Sort'], width=10)
+                        'Bubble Sort', 'Insertion Sort', 'Selection Sort'], width=10)
 algomenu.grid(row=0, column=1, padx=5, pady=5)
 algomenu.current(0)
 
