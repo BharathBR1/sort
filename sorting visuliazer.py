@@ -28,7 +28,7 @@ def Generate_array():
     for i in range(size):
         arr.append(random.randrange(lowest, highest+1))
 
-    drawrectangle(arr, ['red' for x in range(len(arr))])
+    drawrectangle(arr, ['black' for x in range(len(arr))])
 
 
 # DRAWING THE ARRAY ELEMENTS AS RECTANGLES
@@ -48,7 +48,7 @@ def drawrectangle(arr, colorArray):
         x1 = (i + 1) * bar_width + border_offset
         y1 = canvas_height
         canvas.create_rectangle(x0, y0, x1, y1, fill=colorArray[i])
-        canvas.create_text(x0+2, y0, anchor=SW, text=str(arr[i]))
+        canvas.create_text(x0+2, y0, anchor=SW, text=str(arr[i]), fill='white')
 
     root.update_idletasks()
 
@@ -101,7 +101,7 @@ arrsize_Entry = Scale(options_frame, from_=3, to=30,
                       resolution=1, orient=HORIZONTAL, label="Array size")
 arrsize_Entry.grid(row=1, column=2, padx=5, pady=5)
 
-Button(options_frame, text="Current Array", command=Generate_array,
+Button(options_frame, text="Generate Array", command=Generate_array,
        bg='#3C2A21', fg="white", height=4).grid(row=1, column=3, padx=10, pady=10)
 
 
